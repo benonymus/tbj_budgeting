@@ -9,7 +9,7 @@
       <section class="phx-hero">
         <h3>IN</>
       <%= for plus_form <- inputs_for(f, :pluses) do %>
-          <%= text_input plus_form, :title %>
+          <%= text_input plus_form, :title, placeholder: "title" %>
           <%= number_input plus_form, :value, min: "0" %>
         <% end %>
         <button phx-click="add_value" phx-value-action="plus" type="button" class="btn btn-outline-secondary">Add plus</button>
@@ -23,7 +23,7 @@
       <section class="phx-hero">
         <h3>OUT</>
         <%= for minus_form <- inputs_for(f, :minuses) do %>
-            <%= text_input minus_form, :title %>
+            <%= text_input minus_form, :title, placeholder: "title" %>
             <%= number_input minus_form, :value, max: "0" %>
           <% end %>
           <button phx-click="add_value" phx-value-action="minus" type="button" class="btn btn-outline-secondary">Add minus</button>
