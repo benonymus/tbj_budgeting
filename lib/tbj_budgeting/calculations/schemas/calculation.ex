@@ -66,6 +66,6 @@ defmodule TbjBudgeting.Calculations.Value do
       |> get_field(key)
       |> List.insert_at(-1, value_changeset)
 
-    changeset = put_embed(changeset, key, values)
+    put_embed(changeset, key, values)
   end
 end
