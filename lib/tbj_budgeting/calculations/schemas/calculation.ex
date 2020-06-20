@@ -27,7 +27,7 @@ defmodule TbjBudgeting.Calculations.Calculation do
       get_field(changeset, :minuses)
       |> sum_values
 
-    result = pluses + minuses
+    result = abs(pluses) - abs(minuses)
 
     force_change(changeset, :result, result)
   end
