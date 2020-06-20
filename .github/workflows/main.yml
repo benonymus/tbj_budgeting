@@ -1,0 +1,17 @@
+name: Build and Deploy
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: master # you can use this to get a non-detached head but it's not strictly required
+      - uses: ilkka/git-https-push-action@master
+        name: Deploy
+        with:
+          remoteUrl: "https://bence1204%40gmail.com:4087a1d5-3c9a-427c-91b0-9ebe2deb2abe@git.gigalixir.com/doting-black-cleanerwrasse.git"
+          skipHooks: false
