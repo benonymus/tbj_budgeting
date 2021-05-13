@@ -7,6 +7,8 @@ defmodule TbjBudgeting.Application do
 
   def start(_type, _args) do
     children = [
+      # Start the Ecto repository
+      TbjBudgeting.Repo,
       # Start the Telemetry supervisor
       TbjBudgetingWeb.Telemetry,
       # Start the PubSub system

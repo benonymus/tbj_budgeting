@@ -17,7 +17,6 @@ defmodule TbjBudgetingWeb.PageLive do
         socket
       ) do
     changeset = Calculation.changeset(%Calculation{}, %{pluses: pluses, minuses: minuses})
-
     {:noreply, assign(socket, changeset: changeset)}
   end
 

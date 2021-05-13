@@ -3,16 +3,19 @@ defmodule TbjBudgeting.Calculations.Calculation do
   import Ecto.Changeset
   alias TbjBudgeting.Calculations.{Calculation, Value}
 
-  schema "" do
+  schema "calculations" do
+    field(:title, :string)
     field(:result, :integer, default: 0)
     embeds_many(:pluses, Value)
     embeds_many(:minuses, Value)
+
+    timestamps()
   end
 
   @doc false
   def changeset(%Calculation{} = calculation, attrs) do
     calculation
-    |> cast(attrs, [:result])
+    |> cast(attrs, [:result, :title])
     |> cast_embed(:pluses, with: &Value.changeset/2)
     |> cast_embed(:minuses, with: &Value.changeset/2)
     |> calculate_result()

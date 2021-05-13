@@ -7,6 +7,9 @@
 # General application configuration
 use Mix.Config
 
+config :tbj_budgeting,
+  ecto_repos: [TbjBudgeting.Repo]
+
 # Configures the endpoint
 config :tbj_budgeting, TbjBudgetingWeb.Endpoint,
   url: [host: "localhost"],

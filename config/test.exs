@@ -8,3 +8,8 @@ config :tbj_budgeting, TbjBudgetingWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :tbj_budgeting, TbjBudgeting.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL_TEST"),
+  pool: Ecto.Adapters.SQL.Sandbox

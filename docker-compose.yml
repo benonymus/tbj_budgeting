@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  tbj_budgeting:
+    container_name: "tbj_budgeting"
+    image: docker.io/benonymus/elixir_docker:1.11
+    command: mix phx.server
+    environment:
+      - MIX_ENV=dev
+      - DATABASE_URL=ecto://postgres:postgres@postgres_tbj_budgeting/tbj_budgeting
+      - DATABASE_URL_TEST=ecto://postgres:postgres@postgres_tbj_budgeting/tbj_budgeting_test
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres_tbj_budgeting
+
+  postgres_tbj_budgeting:
+    image: postgres:9.6-alpine
+    container_name: "postgres_tbj_budgeting"
+    ports:
+      - "5434:5432"

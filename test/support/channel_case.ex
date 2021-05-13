@@ -28,7 +28,15 @@ defmodule TbjBudgetingWeb.ChannelCase do
     end
   end
 
-  setup _tags do
+  setup tags do
+    :ok =
+      Ecto.Adapters.SQL.Sandbox.checkout(TbjBudgeting.Repo)
+      |> IO.inspect()
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(TbjBudgeting.Repo, {:shared, self()})
+    end
+
     :ok
   end
 end
