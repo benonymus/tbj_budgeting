@@ -1,7 +1,7 @@
 # TbjBudgeting
 
 To start your Phoenix server:
-
+  * start the container: `docker-compose run --name tbj_budgeting --rm --service-ports tbj_budgeting /bin/bash`
   * Setup the project with `mix setup`
   * Start Phoenix endpoint with `mix phx.server`
 
