@@ -28,3 +28,4 @@ jobs:
           privileged: true
           git-builder: docker
           git-docker-dockerfile: Dockerfile.koyeb
+          service-instance-type: free
