@@ -1,0 +1,30 @@
+name: Deploy preview environment on Koyeb
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy_preview:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "${{ github.head_ref }}"
+      cancel-in-progress: true
+    steps:
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/koyeb-actions@v2
+        with:
+          api_token: "${{ secrets.KOYEB_API_TOKEN }}"
+
+      - name: Build and deploy the application to Koyeb
+        uses: koyeb/action-git-deploy@v1
+        with:
+          git-branch: ${{ github.head_ref }}
+          app-name: "tbj-budgeting-${{ github.head_ref }}"
+          service-name: ${{ github.head_ref }}
+          service-ports: "4000:http"
+          service-routes: "/:4000"
+          privileged: true
+          git-builder: docker
+          git-docker-dockerfile: Dockerfile.koyeb
